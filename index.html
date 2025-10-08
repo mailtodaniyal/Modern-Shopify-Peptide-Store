@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeptidePure | Premium Research Compounds</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A2463;
+            --primary-light: #1E40AF;
+            --secondary: #00B4D8;
+            --accent: #7209B7;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --gray: #64748B;
+            --light-gray: #E2E8F0;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            --gradient-light: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Advanced Background Animation */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-light);
+            opacity: 0.05;
+            filter: blur(40px);
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .molecule {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: rotate 40s infinite linear;
+        }
+
+        .atom {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(114, 9, 183, 0.1);
+        }
+
+        .bond {
+            position: absolute;
+            height: 2px;
+            background: rgba(0, 180, 216, 0.1);
+            transform-origin: left center;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(5vw, -5vh) rotate(90deg);
+            }
+            50% {
+                transform: translate(-5vw, 3vh) rotate(180deg);
+            }
+            75% {
+                transform: translate(3vw, 5vh) rotate(270deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Header with Glass Morphism */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-action {
+            margin-left: 20px;
+            font-size: 18px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .header-action:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: var(--white);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section with Parallax */
+        .hero {
+            padding: 180px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.03;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(10, 36, 99, 0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--dark);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary-light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(10, 36, 99, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            max-width: 700px;
+            z-index: 0;
+        }
+
+        .floating-product {
+            position: absolute;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: float-product 6s infinite ease-in-out;
+        }
+
+        .floating-product img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .floating-product:nth-child(1) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-product:nth-child(2) {
+            top: 50%;
+            right: 25%;
+            animation-delay: 2s;
+        }
+
+        .floating-product:nth-child(3) {
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float-product {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* Features Section with Cards */
+        .features {
+            padding: 120px 0;
+            background-color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            background: rgba(0, 180, 216, 0.1);
+            color: var(--secondary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--gradient-light);
+            opacity: 0.05;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .feature-card:hover::before {
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--white);
+            font-size: 32px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* Products Section with Advanced Filter */
+        .products {
+            padding: 120px 0;
+            background-color: #f8fafc;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 30px;
+            font-weight: 500;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn i {
+            font-size: 14px;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gradient);
+            color: var(--white);
+            border-color: transparent;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            height: 220px;
+            width: 100%;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            max-width: 70%;
+            max-height: 70%;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .add-to-cart {
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(10, 36, 99, 0.3);
+        }
+
+        .view-all {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Testimonials with Advanced Slider */
+        .testimonials {
+            padding: 120px 0;
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.02;
+            z-index: -1;
+        }
+
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 20px;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 50px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 80px;
+            color: var(--primary-light);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border: 3px solid var(--primary-light);
+            box-shadow: 0 5px 15px rgba(10, 36, 99, 0.1);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-role {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .slider-arrow:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .slider-arrow.prev {
+            left: -25px;
+        }
+
+        .slider-arrow.next {
+            right: -25px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 0;
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L1000,0 L1000,1000 L0,1000 Z"></path></svg>');
+            background-size: cover;
+        }
+
+        .cta h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta .btn {
+            background-color: var(--white);
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta .btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-light);
+        }
+
+        .footer-col p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-col ul li a i {
+            margin-right: 10px;
+            font-size: 14px;
+            width: 20px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 50px;
+            }
+            
+            .section-title {
+                font-size: 42px;
+            }
+            
+            .hero-image {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                padding: 150px 0 100px;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+                margin-bottom: 60px;
+            }
+            
+            .hero-image {
+                position: relative;
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+                transform: none;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .slider-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: var(--shadow-lg);
+                padding: 30px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0 0 20px 0;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .products-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-card {
+                padding: 30px 20px;
+            }
+            
+            .floating-product {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Advanced Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+
+    <!-- Header with Glass Morphism -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="logo-text">PeptidePure</div>
+            </a>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="header-action search-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-action user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="header-action cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count">3</div>
+                </div>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Parallax -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container" style="position: relative;">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-flask"></i> Premium Research Compounds
+                </div>
+                <h1>Advanced Peptide Solutions for Cutting-Edge Research</h1>
+                <p>Discover our meticulously formulated peptides with 99.9% purity, backed by comprehensive third-party testing and scientific validation.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Explore Products</a>
+                    <a href="#" class="btn btn-secondary">Research Database</a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="floating-product">
+                    <img src="https://placehold.co/120x120/0A2463/ffffff?text=BPC-157" alt="BPC-157">
+                    <span>BPC-157 5mg</span>
+                </div>
+                <div style="margin-right: 10pc;" class="floating-product">
+                    <img src="https://placehold.co/120x120/00B4D8/ffffff?text=Semax" alt="Semax">
+                    <span>Semax 10mg</span>
+                </div>
+                <div style="margin-bottom: 3pc;" class="floating-product">
+                    <img src="https://placehold.co/120x120/7209B7/ffffff?text=Epithalon" alt="Epithalon">
+                    <span>Epithalon 10mg</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section with Cards -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Why Researchers Choose Us</div>
+                <h2 class="section-title">Uncompromising Quality & Precision</h2>
+                <p class="section-description">Our commitment to excellence ensures every product meets the highest standards for research applications.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Third-Party Verified</h3>
+                    <p>Every batch undergoes rigorous independent testing with certificates of analysis available for transparency.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>Highest Purity Standards</h3>
+                    <p>Our peptides maintain 99.9% purity with precise molecular structure and optimal bioactivity.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Expedited Global Shipping</h3>
+                    <p>Priority shipping with temperature-controlled packaging to ensure product integrity worldwide.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure & Discreet</h3>
+                    <p>Advanced encryption and discreet packaging protect your privacy and research integrity.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Expert Support</h3>
+                    <p>Our scientific team provides technical guidance and research consultation for optimal outcomes.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Comprehensive Documentation</h3>
+                    <p>Detailed product specifications, storage guidelines, and research references included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section with Advanced Filter -->
+    <section class="products">
+        <div class="container">
+            <div class="products-header">
+                <div class="section-header" style="text-align: left; margin-bottom: 0;">
+                    <div class="section-subtitle">Research Compounds</div>
+                    <h2 class="section-title">Premium Peptide Selection</h2>
+                </div>
+                
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-th"></i> All Products
+                    </button>
+                    <button class="filter-btn" data-filter="recovery">
+                        <i class="fas fa-heartbeat"></i> Recovery
+                    </button>
+                    <button class="filter-btn" data-filter="cognitive">
+                        <i class="fas fa-brain"></i> Cognitive
+                    </button>
+                    <button class="filter-btn" data-filter="metabolic">
+                        <i class="fas fa-burn"></i> Metabolic
+                    </button>
+                    <button class="filter-btn" data-filter="anti-aging">
+                        <i class="fas fa-clock"></i> Anti-Aging
+                    </button>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="recovery">
+                    <div class="product-image">
+                        <img src="https://placehold.co/200x150/0A2463/ffffff?text=BPC-157" alt="BPC-157">
+                        <div class="product-badge">Best Seller</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Recovery Peptide</div>
+                        <h3 class="product-title">BPC-157 5mg</h3>
+                        <p class="product-description">A synthetic peptide known for its potential tissue repair and healing properties in research models.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$49.99</div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="cognitive">
+                    <div class="product-image">
+                        <img src="https://placehold.co/200x150/00B4D8/ffffff?text=Semax" alt="Semax">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Cognitive Peptide</div>
+                        <h3 class="product-title">Semax 10mg</h3>
+                        <p class="product-description">A nootropic peptide studied for its potential neuroprotective and cognitive enhancement effects.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$64.99</div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="metabolic">
+                    <div class="product-image">
+                        <img src="https://placehold.co/200x150/7209B7/ffffff?text=AOD-9604" alt="AOD-9604">
+                        <div class="product-badge">Sale</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Metabolic Peptide</div>
+                        <h3 class="product-title">AOD-9604 2mg</h3>
+                        <p class="product-description">A modified fragment of growth hormone researched for its potential metabolic regulation properties.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span style="text-decoration: line-through; opacity: 0.7; font-size: 16px;">$39.99</span> $29.99
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="anti-aging">
+                    <div class="product-image">
+                        <img src="https://placehold.co/200x150/0A2463/ffffff?text=Epithalon" alt="Epithalon">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Anti-Aging Peptide</div>
+                        <h3 class="product-title">Epithalon 10mg</h3>
+                        <p class="product-description">A tetrapeptide studied for its potential telomerase activation and lifespan extension properties.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$79.99</div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card" data-category="recovery">
+                    <div class="product-image">
+                        <img src="https://placehold.co/200x150/00B4D8/ffffff?text=TB-500" alt="TB-500">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Recovery Peptide</div>
+                        <h3 class="product-title">TB-500 5mg</h3>
+                        <p class="product-description">A synthetic version of thymosin beta-4 researched for its potential in tissue repair and regeneration.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$54.99</div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card" data-category="cognitive">
+                    <div class="product-image">
+                        <img src="https://placehold.co/200x150/7209B7/ffffff?text=Selank" alt="Selank">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Cognitive Peptide</div>
+                        <h3 class="product-title">Selank 5mg</h3>
+                        <p class="product-description">A synthetic peptide studied for its potential anxiolytic and nootropic effects in research models.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$59.99</div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-all">
+                <a href="#" class="btn btn-secondary">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials with Advanced Slider -->
+    <section class="testimonials">
+        <div class="container testimonials-container">
+            <div class="section-header">
+                <div class="section-subtitle">Research Community</div>
+                <h2 class="section-title">Trusted by Scientists Worldwide</h2>
+                <p class="section-description">Hear from researchers and institutions who rely on our premium peptides for their studies.</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="slider-arrow prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar">
+                                <img src="https://placehold.co/80x80/0A2463/ffffff?text=DR" alt="Dr. Roberts">
+                            </div>
+                            <p class="testimonial-text">"The consistency and purity of PeptidePure products have been exceptional in our laboratory studies. Their comprehensive documentation and third-party verification provide the confidence we need for our research."</p>
+                            <p class="testimonial-author">Dr. Michael Roberts</p>
+                            <p class="testimonial-role">Research Scientist, Stanford University</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar">
+                                <img src="https://placehold.co/80x80/00B4D8/ffffff?text=AS" alt="A. Simmons">
+                            </div>
+                            <p class="testimonial-text">"I've sourced peptides from multiple suppliers over the years, but PeptidePure stands out for their exceptional customer service and product quality. The shipping is always prompt and the packaging ensures product integrity."</p>
+                            <p class="testimonial-author">Amanda Simmons</p>
+                            <p class="testimonial-role">Biomedical Researcher, MIT</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar">
+                                <img src="https://placehold.co/80x80/7209B7/ffffff?text=JC" alt="J. Chen">
+                            </div>
+                            <p class="testimonial-text">"The third-party testing reports and detailed product information give me confidence in the compounds I'm using for my PhD research. PeptidePure's commitment to transparency is unmatched in the industry."</p>
+                            <p class="testimonial-author">James Chen</p>
+                            <p class="testimonial-role">PhD Candidate, Harvard University</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-arrow next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                
+                <div class="slider-nav" id="sliderNav">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Advance Your Research?</h2>
+            <p>Join thousands of researchers worldwide who trust PeptidePure for uncompromising quality and scientific integrity.</p>
+            <a href="#" class="btn">Create Research Account</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>PeptidePure</h3>
+                    <p>Providing premium research peptides with uncompromising quality and scientific transparency since 2015.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Recovery Peptides</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cognitive Peptides</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Metabolic Peptides</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Anti-Aging Peptides</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> New Arrivals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Research Database</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Dosage Calculator</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Storage Guidelines</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Scientific Literature</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Research Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Our Team</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Shipping Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Returns & Refunds</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PeptidePure. All rights reserved. Products are for research purposes only. Not for human consumption.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Advanced Background Animation
+        function createBackgroundAnimation() {
+            const container = document.getElementById('backgroundAnimation');
+            
+            // Create floating shapes
+            for (let i = 0; i < 8; i++) {
+                const shape = document.createElement('div');
+                shape.classList.add('floating-shape');
+                
+                // Random size between 100px and 300px
+                const size = Math.random() * 200 + 100;
+                shape.style.width = `${size}px`;
+                shape.style.height = `${size}px`;
+                
+                // Random position
+                shape.style.left = `${Math.random() * 100}%`;
+                shape.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay and duration
+                shape.style.animationDelay = `${Math.random() * 20}s`;
+                shape.style.animationDuration = `${Math.random() * 10 + 20}s`;
+                
+                container.appendChild(shape);
+            }
+            
+            // Create molecule structures
+            for (let i = 0; i < 5; i++) {
+                const molecule = document.createElement('div');
+                molecule.classList.add('molecule');
+                
+                // Random position
+                molecule.style.left = `${Math.random() * 100}%`;
+                molecule.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 100 + 50;
+                molecule.style.width = `${size}px`;
+                molecule.style.height = `${size}px`;
+                
+                // Create atoms
+                const atomCount = Math.floor(Math.random() * 4) + 3;
+                const angleStep = (2 * Math.PI) / atomCount;
+                
+                for (let j = 0; j < atomCount; j++) {
+                    const atom = document.createElement('div');
+                    atom.classList.add('atom');
+                    
+                    // Position atoms in a circle
+                    const angle = j * angleStep;
+                    const radius = size / 2 - 10;
+                    const x = radius * Math.cos(angle);
+                    const y = radius * Math.sin(angle);
+                    
+                    atom.style.left = `calc(50% + ${x}px)`;
+                    atom.style.top = `calc(50% + ${y}px)`;
+                    
+                    // Random atom size
+                    const atomSize = Math.random() * 15 + 5;
+                    atom.style.width = `${atomSize}px`;
+                    atom.style.height = `${atomSize}px`;
+                    
+                    molecule.appendChild(atom);
+                    
+                    // Create bonds between atoms
+                    if (j > 0) {
+                        const bond = document.createElement('div');
+                        bond.classList.add('bond');
+                        
+                        const prevAngle = (j - 1) * angleStep;
+                        const prevX = radius * Math.cos(prevAngle);
+                        const prevY = radius * Math.sin(prevAngle);
+                        
+                        const bondLength = Math.sqrt(Math.pow(x - prevX, 2) + Math.pow(y - prevY, 2));
+                        const bondAngle = Math.atan2(y - prevY, x - prevX);
+                        
+                        bond.style.width = `${bondLength}px`;
+                        bond.style.left = `calc(50% + ${prevX}px)`;
+                        bond.style.top = `calc(50% + ${prevY}px)`;
+                        bond.style.transform = `rotate(${bondAngle}rad)`;
+                        
+                        molecule.appendChild(bond);
+                    }
+                }
+                
+                // Random animation duration
+                molecule.style.animationDuration = `${Math.random() * 20 + 30}s`;
+                
+                container.appendChild(molecule);
+            }
+        }
+        
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenu').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+        
+        // Product Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                productCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Testimonial Slider
+        const track = document.getElementById('testimonialTrack');
+        const dots = document.querySelectorAll('.slider-dot');
+        const prevButton = document.querySelector('.slider-arrow.prev');
+        const nextButton = document.querySelector('.slider-arrow.next');
+        let currentSlide = 0;
+        
+        function goToSlide(slideIndex) {
+            track.style.transform = `translateX(-${slideIndex * 100}%)`;
+            
+            // Update active dot
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[slideIndex].classList.add('active');
+            
+            currentSlide = slideIndex;
+        }
+        
+        // Add click events to dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                goToSlide(slideIndex);
+            });
+        });
+        
+        // Add click events to arrows
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + dots.length) % dots.length;
+            goToSlide(currentSlide);
+        });
+        
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % dots.length;
+            goToSlide(currentSlide);
+        });
+        
+        // Auto-advance slides
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % dots.length;
+            goToSlide(currentSlide);
+        }, 6000);
+        
+        // Add to Cart Animation
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Create a temporary animation
+                const icon = this.querySelector('i');
+                const originalIcon = icon.className;
+                
+                icon.className = 'fas fa-check';
+                
+                setTimeout(() => {
+                    icon.className = originalIcon;
+                }, 1000);
+                
+                // Update cart count
+                const cartCount = document.querySelector('.cart-count');
+                let count = parseInt(cartCount.textContent);
+                count++;
+                cartCount.textContent = count;
+                
+                // Add pulse animation to cart icon
+                const cartIcon = document.querySelector('.cart-icon');
+                cartIcon.classList.add('pulse');
+                setTimeout(() => {
+                    cartIcon.classList.remove('pulse');
+                }, 500);
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.85)';
+                header.style.boxShadow = 'var(--shadow)';
+            }
+        });
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createBackgroundAnimation();
+            
+            // Add initial animation to product cards
+            productCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
